@@ -1,3 +1,4 @@
+require('dotenv').config();
 const asyncHandler = require('express-async-handler');
 const nodemailer = require('nodemailer');
 const Contact = require('../models/Contact');
