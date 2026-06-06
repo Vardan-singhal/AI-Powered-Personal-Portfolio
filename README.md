@@ -8,11 +8,11 @@ The platform goes beyond a traditional portfolio by integrating intelligent feat
 
 ## 🌐 Live Demo
 
-**Portfolio:** https://ai-powered-personal-portfolio-clien.vercel.app/
+**Portfolio:** [\[Live Demo\]](https://ai-powered-personal-portfolio-clien.vercel.app/)
 
-**Frontend Repository:** [\[Add GitHub URL\]](https://github.com/Vardan-singhal/AI-Powered-Personal-Portfolio/tree/main/client)
+**Frontend Repository:** [\[URL\]](https://github.com/Vardan-singhal/AI-Powered-Personal-Portfolio/tree/main/client)
 
-**Backend Repository:** [\[Add GitHub URL\]](https://github.com/Vardan-singhal/AI-Powered-Personal-Portfolio/tree/main/server)
+**Backend Repository:** [\[URL\]](https://github.com/Vardan-singhal/AI-Powered-Personal-Portfolio/tree/main/server)
 ---
 
 ## ✨ Features
