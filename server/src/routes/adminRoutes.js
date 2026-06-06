@@ -1,0 +1,10 @@
+const r = require('express').Router();
+const c = require('../controllers/adminController');
+const { protect } = require('../middleware/authMiddleware');
+const admin = require('../middleware/adminMiddleware');
+r.use(protect, admin);
+r.get('/dashboard', c.dashboard);
+r.post('/reindex', c.reindex);
+r.get('/knowledge', c.knowledgeList);
+r.delete('/knowledge/:id', c.knowledgeDelete);
+module.exports = r;

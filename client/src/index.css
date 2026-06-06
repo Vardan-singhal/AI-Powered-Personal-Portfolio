@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', system-ui, sans-serif; }
+
+@layer components {
+  .glass { @apply bg-white/5 backdrop-blur-md border border-white/10; }
+  .btn-primary { @apply px-5 py-2.5 rounded-lg bg-brand-600 hover:bg-brand-700 text-white font-medium transition; }
+  .btn-ghost { @apply px-5 py-2.5 rounded-lg border border-white/15 hover:bg-white/5 transition; }
+  .card { @apply rounded-2xl glass p-6; }
+  .input { @apply w-full px-4 py-2.5 rounded-lg bg-white/5 border border-white/10 focus:border-brand-500 focus:outline-none; }
+}
+
+.tech-pill {
+  padding: 10px 16px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: white;
+  font-size: 0.875rem;
+  font-weight: 500;
+  white-space: nowrap;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-12px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}

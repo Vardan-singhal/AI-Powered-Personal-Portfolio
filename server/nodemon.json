@@ -1,0 +1,11 @@
+{
+  "watch": [
+    "src"
+  ],
+  "ext": "js,json",
+  "ignore": [
+    "src/uploads/*",
+    "src/vector-db/index.json"
+  ],
+  "exec": "node src/server.js"
+}

@@ -1,0 +1,13 @@
+const r = require('express').Router();
+const c = require('../controllers/projectController');
+const { protect } = require('../middleware/authMiddleware');
+const admin = require('../middleware/adminMiddleware');
+const { uploadImage } = require('../middleware/uploadMiddleware');
+r.get('/', c.list);
+r.get('/:id', c.get);
+// r.post('/', protect, admin, c.create);
+// r.put('/:id', protect, admin, c.update);
+r.delete('/:id', protect, admin, c.remove);
+module.exports = r;
+r.post('/', protect, admin, uploadImage.array('images', 5), c.create);
+r.put('/:id', protect, admin, uploadImage.array('images', 5), c.update);
