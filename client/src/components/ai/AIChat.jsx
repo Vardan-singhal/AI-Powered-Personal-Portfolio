@@ -16,13 +16,17 @@ export default function AIChat() {
       </button>
       <AnimatePresence>
         {open && (
-          <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 40 }}
-            className="
+          <motion.div
+  initial={{ opacity: 0, y: 40 }}
+  animate={{ opacity: 1, y: 0 }}
+  exit={{ opacity: 0, y: 40 }}
+  className="
 fixed
 bottom-6
 right-6
 z-50
 isolate
+flex flex-col
 w-[min(420px,calc(100vw-2rem))]
 h-[min(640px,calc(100vh-3rem))]
 bg-slate-950/95
@@ -31,7 +35,8 @@ border border-white/10
 rounded-2xl
 overflow-hidden
 shadow-2xl
-">
+"
+>
             <div className="p-4 border-b border-white/10 flex justify-between items-center">
               <div>
                 <p className="font-semibold">AI Recruiter Assistant</p>
@@ -39,7 +44,7 @@ shadow-2xl
               </div>
               <button onClick={() => setOpen(false)}><FiX /></button>
             </div>
-            <div className="flex-1 overflow-y-auto p-4 space-y-3">
+            <div className="flex-1 overflow-y-auto p-4 space-y-3 min-h-0">
               {messages.length === 0 && <SuggestedQuestions onPick={ask} />}
               {messages.map((m, i) => <ChatMessage key={i} {...m} />)}
               {loading && <ChatMessage role="assistant" content="…" />}
