@@ -7,7 +7,7 @@ import {
 } from 'recharts';
 
 const COLORS = [
-  '#EAB308', // Gold
+  '#EAB308',
   '#F59E0B',
   '#FBBF24',
   '#D97706',
@@ -33,7 +33,7 @@ export default function LanguageChart({ languages }) {
         border-yellow-500/15
         bg-neutral-950
         p-6
-        h-80
+        h-[420px]
         shadow-lg
       "
     >
@@ -41,32 +41,43 @@ export default function LanguageChart({ languages }) {
         Language Distribution
       </h3>
 
-      <ResponsiveContainer width="100%" height="100%">
-        <PieChart>
-          <Pie
-            data={data}
-            dataKey="value"
-            nameKey="name"
-            innerRadius={50}
-            outerRadius={90}
-            paddingAngle={2}
-          >
-            {data.map((_, i) => (
-              <Cell
-                key={i}
-                fill={COLORS[i % COLORS.length]}
-              />
-            ))}
-          </Pie>
+      <div className="h-[340px]">
+        <ResponsiveContainer
+          width="100%"
+          height="100%"
+        >
+          <PieChart>
+            <Pie
+              data={data}
+              dataKey="value"
+              nameKey="name"
+              innerRadius={55}
+              outerRadius={85}
+              paddingAngle={2}
+              cx="35%"
+              cy="50%"
+            >
+              {data.map((_, i) => (
+                <Cell
+                  key={i}
+                  fill={COLORS[i % COLORS.length]}
+                />
+              ))}
+            </Pie>
 
-          <Legend
-            wrapperStyle={{
-              color: '#a1a1aa',
-              fontSize: '12px',
-            }}
-          />
-        </PieChart>
-      </ResponsiveContainer>
+            <Legend
+              layout="vertical"
+              align="right"
+              verticalAlign="middle"
+              wrapperStyle={{
+                color: '#a1a1aa',
+                fontSize: '13px',
+                paddingLeft: '20px',
+              }}
+            />
+          </PieChart>
+        </ResponsiveContainer>
+      </div>
     </div>
   );
 }
