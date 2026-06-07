@@ -7,7 +7,7 @@ export default function ProfileHero() {
       initial={{ opacity: 0, x: 60 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.8 }}
-      className="relative flex justify-center items-center py-20 md:py-8"
+      className="relative flex justify-center items-center py-20 md:py-8 px-6"
     >
       {/* Main Glow */}
       <div className="absolute w-80 h-80 md:w-[420px] md:h-[420px] rounded-full bg-cyan-500/20 blur-[100px]" />
@@ -56,8 +56,8 @@ export default function ProfileHero() {
           }}
           className="
             relative
-            w-60
-            h-60
+            w-52
+            h-52
             sm:w-72
             sm:h-72
             md:w-[420px]
@@ -72,44 +72,92 @@ export default function ProfileHero() {
         />
       </div>
 
-      {/* Floating Tech Badges - Desktop Only */}
-
+      {/* React */}
       <motion.div
         animate={{ y: [0, -10, 0] }}
         transition={{ duration: 4, repeat: Infinity }}
-        className="hidden md:block absolute top-10 left-0 tech-pill"
+        className="
+          absolute
+          top-4
+          left-0
+          md:top-10
+          md:left-0
+          tech-pill
+          text-xs
+          sm:text-sm
+        "
       >
         ⚛ React
       </motion.div>
 
+      {/* Node.js */}
       <motion.div
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 5, repeat: Infinity }}
-        className="hidden md:block absolute top-28 right-0 tech-pill"
+        className="
+          absolute
+          top-12
+          right-0
+          md:top-28
+          md:right-0
+          tech-pill
+          text-xs
+          sm:text-sm
+        "
       >
         🟢 Node.js
       </motion.div>
 
+      {/* MongoDB */}
       <motion.div
         animate={{ y: [0, -8, 0] }}
         transition={{ duration: 4.5, repeat: Infinity }}
-        className="hidden md:block absolute bottom-24 left-0 tech-pill"
+        className="
+          absolute
+          bottom-20
+          left-0
+          md:bottom-24
+          md:left-0
+          tech-pill
+          text-xs
+          sm:text-sm
+        "
       >
         🍃 MongoDB
       </motion.div>
 
+      {/* Express */}
       <motion.div
         animate={{ y: [0, 8, 0] }}
         transition={{ duration: 5.5, repeat: Infinity }}
-        className="hidden md:block absolute bottom-6 left-10 tech-pill"
+        className="
+          absolute
+          bottom-0
+          left-4
+          md:bottom-6
+          md:left-10
+          tech-pill
+          text-xs
+          sm:text-sm
+        "
       >
         🚀 Express
       </motion.div>
 
+      {/* AI */}
       <motion.div
         animate={{ y: [0, -12, 0] }}
         transition={{ duration: 4.8, repeat: Infinity }}
-        className="hidden md:block absolute bottom-12 right-4 tech-pill"
+        className="
+          absolute
+          bottom-6
+          right-0
+          md:bottom-12
+          md:right-4
+          tech-pill
+          text-xs
+          sm:text-sm
+        "
       >
         🤖 AI
       </motion.div>
