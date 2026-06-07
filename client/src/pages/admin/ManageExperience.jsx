@@ -47,7 +47,9 @@ export default function ManageExperience() {
           role: '',
           company: '',
           date: '',
-          body: '',
+          description: '',
+          technologies: '',
+          achievements: '',
         },
       ],
     });
@@ -113,7 +115,7 @@ export default function ManageExperience() {
           shadow-lg
         "
       >
-        {/* Experience Header */}
+        {/* Header */}
         <div className="flex justify-between items-center">
           <h3 className="text-lg font-semibold text-yellow-300">
             Work Experience
@@ -128,7 +130,7 @@ export default function ManageExperience() {
         </div>
 
         {/* Experience Items */}
-        <div className="space-y-4">
+        <div className="space-y-6">
           {content.items.map((item, i) => (
             <div
               key={i}
@@ -137,84 +139,148 @@ export default function ManageExperience() {
                 border
                 border-yellow-500/10
                 bg-black
-                p-4
-                space-y-3
+                p-5
+                space-y-4
               "
             >
               {/* Role */}
-              <input
-                type="text"
-                value={item.role}
-                onChange={(e) =>
-                  updateExperienceItem(
-                    i,
-                    'role',
-                    e.target.value
-                  )
-                }
-                className="input"
-                placeholder="Job Role"
-              />
+              <div>
+                <label className="block text-sm font-medium text-yellow-300 mb-2">
+                  Role
+                </label>
+
+                <input
+                  type="text"
+                  value={item.role || ''}
+                  onChange={(e) =>
+                    updateExperienceItem(
+                      i,
+                      'role',
+                      e.target.value
+                    )
+                  }
+                  className="input"
+                  placeholder="Frontend Developer Intern"
+                />
+              </div>
 
               {/* Company */}
-              <input
-                type="text"
-                value={item.company}
-                onChange={(e) =>
-                  updateExperienceItem(
-                    i,
-                    'company',
-                    e.target.value
-                  )
-                }
-                className="input"
-                placeholder="Company Name"
-              />
+              <div>
+                <label className="block text-sm font-medium text-yellow-300 mb-2">
+                  Company
+                </label>
+
+                <input
+                  type="text"
+                  value={item.company || ''}
+                  onChange={(e) =>
+                    updateExperienceItem(
+                      i,
+                      'company',
+                      e.target.value
+                    )
+                  }
+                  className="input"
+                  placeholder="Company Name"
+                />
+              </div>
 
               {/* Date */}
-              <input
-                type="text"
-                value={item.date}
-                onChange={(e) =>
-                  updateExperienceItem(
-                    i,
-                    'date',
-                    e.target.value
-                  )
-                }
-                className="input"
-                placeholder="Jan 2024 — Present"
-              />
+              <div>
+                <label className="block text-sm font-medium text-yellow-300 mb-2">
+                  Duration
+                </label>
+
+                <input
+                  type="text"
+                  value={item.date || ''}
+                  onChange={(e) =>
+                    updateExperienceItem(
+                      i,
+                      'date',
+                      e.target.value
+                    )
+                  }
+                  className="input"
+                  placeholder="September 2025 – March 2026"
+                />
+              </div>
 
               {/* Description */}
-              <textarea
-                value={item.body}
-                onChange={(e) =>
-                  updateExperienceItem(
-                    i,
-                    'body',
-                    e.target.value
-                  )
-                }
-                className="input"
-                rows={6}
-                placeholder={`Enter one achievement per line
+              <div>
+                <label className="block text-sm font-medium text-yellow-300 mb-2">
+                  Description
+                </label>
 
-Built AI-powered portfolio platform
-Implemented JWT authentication
-Integrated MongoDB database
-Developed REST APIs using Express.js
-Improved application performance`}
-              />
+                <textarea
+                  value={item.description || ''}
+                  onChange={(e) =>
+                    updateExperienceItem(
+                      i,
+                      'description',
+                      e.target.value
+                    )
+                  }
+                  className="input"
+                  rows={3}
+                  placeholder="Brief summary of your role and responsibilities"
+                />
+              </div>
 
-              <p className="text-xs text-zinc-500">
-                Each new line will be displayed as a bullet point on the Experience page.
-              </p>
+              {/* Technologies */}
+              <div>
+                <label className="block text-sm font-medium text-yellow-300 mb-2">
+                  Technologies Used
+                </label>
 
+                <input
+                  type="text"
+                  value={item.technologies || ''}
+                  onChange={(e) =>
+                    updateExperienceItem(
+                      i,
+                      'technologies',
+                      e.target.value
+                    )
+                  }
+                  className="input"
+                  placeholder="React.js, JavaScript, HTML5, CSS3, Bootstrap"
+                />
+              </div>
+
+              {/* Achievements */}
+              <div>
+                <label className="block text-sm font-medium text-yellow-300 mb-2">
+                  Key Achievements
+                </label>
+
+                <textarea
+                  value={item.achievements || ''}
+                  onChange={(e) =>
+                    updateExperienceItem(
+                      i,
+                      'achievements',
+                      e.target.value
+                    )
+                  }
+                  className="input"
+                  rows={6}
+                  placeholder={`Enter one achievement per line
+
+Developed responsive web interfaces
+Integrated backend APIs
+Converted Figma designs into reusable components
+Improved page performance and UX`}
+                />
+
+                <p className="text-xs text-zinc-500 mt-2">
+                  Each new line will be displayed as a bullet point on the Experience page.
+                </p>
+              </div>
+
+              {/* Remove */}
               <button
-                onClick={() =>
-                  removeExperienceItem(i)
-                }
+                onClick={() => removeExperienceItem(i)}
                 className="
                   text-red-400
                   text-sm
