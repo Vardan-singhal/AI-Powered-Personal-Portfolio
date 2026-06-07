@@ -1,16 +1,70 @@
-import { PieChart, Pie, Cell, ResponsiveContainer, Legend } from 'recharts';
-const COLORS = ['#6366f1','#8b5cf6','#ec4899','#f59e0b','#10b981','#3b82f6','#ef4444','#14b8a6'];
+import {
+  PieChart,
+  Pie,
+  Cell,
+  ResponsiveContainer,
+  Legend,
+} from 'recharts';
+
+const COLORS = [
+  '#EAB308', // Gold
+  '#F59E0B',
+  '#FBBF24',
+  '#D97706',
+  '#CA8A04',
+  '#A16207',
+  '#FCD34D',
+  '#92400E',
+];
+
 export default function LanguageChart({ languages }) {
-  const data = Object.entries(languages).map(([name, value]) => ({ name, value }));
+  const data = Object.entries(languages || {}).map(
+    ([name, value]) => ({
+      name,
+      value,
+    })
+  );
+
   return (
-    <div className="card h-80">
-      <h3 className="font-semibold mb-3">Language Distribution</h3>
-      <ResponsiveContainer>
+    <div
+      className="
+        rounded-2xl
+        border
+        border-yellow-500/15
+        bg-neutral-950
+        p-6
+        h-80
+        shadow-lg
+      "
+    >
+      <h3 className="font-semibold text-yellow-300 mb-4">
+        Language Distribution
+      </h3>
+
+      <ResponsiveContainer width="100%" height="100%">
         <PieChart>
-          <Pie data={data} dataKey="value" nameKey="name" innerRadius={50} outerRadius={90}>
-            {data.map((_, i) => <Cell key={i} fill={COLORS[i % COLORS.length]} />)}
+          <Pie
+            data={data}
+            dataKey="value"
+            nameKey="name"
+            innerRadius={50}
+            outerRadius={90}
+            paddingAngle={2}
+          >
+            {data.map((_, i) => (
+              <Cell
+                key={i}
+                fill={COLORS[i % COLORS.length]}
+              />
+            ))}
           </Pie>
-          <Legend />
+
+          <Legend
+            wrapperStyle={{
+              color: '#a1a1aa',
+              fontSize: '12px',
+            }}
+          />
         </PieChart>
       </ResponsiveContainer>
     </div>

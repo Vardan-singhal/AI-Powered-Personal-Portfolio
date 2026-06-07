@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
-import PageEditor from '../../components/admin/PageEditor';
-import { getPageContent, updatePageContent } from '../../services/pageContentService';
 import toast from 'react-hot-toast';
+import Loader from '../../components/common/Loader';
+import {
+  getPageContent,
+  updatePageContent,
+} from '../../services/pageContentService';
 
 export default function ManageAbout() {
   const [page, setPage] = useState(null);
@@ -9,20 +12,23 @@ export default function ManageAbout() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getPageContent('about').then((p) => {
-      setPage(p);
-      setContent(JSON.parse(JSON.stringify(p.content)));
-      setLoading(false);
-    });
+    getPageContent('about')
+      .then((p) => {
+        setPage(p);
+        setContent(JSON.parse(JSON.stringify(p.content)));
+      })
+      .finally(() => setLoading(false));
   }, []);
 
   const handleSave = async () => {
     setLoading(true);
+
     try {
       await updatePageContent('about', {
         title: page.title,
         content,
       });
+
       toast.success('About page updated');
     } catch (error) {
       toast.error('Failed to update');
@@ -88,7 +94,10 @@ export default function ManageAbout() {
     });
   };
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) {
+    return <Loader text="Loading About Page..." />;
+  }
+
   if (!content) return null;
 
   const eduSection = content.sections.find(
@@ -96,9 +105,12 @@ export default function ManageAbout() {
   );
 
   return (
-    <div className="space-y-6">
-      <div className="flex justify-between items-center">
-        <h2 className="text-2xl font-bold">Edit About</h2>
+    <div className="space-y-8">
+      {/* Header */}
+      <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4">
+        <h2 className="text-3xl font-bold text-yellow-300">
+          Edit About Page
+        </h2>
 
         <button
           onClick={handleSave}
@@ -109,10 +121,21 @@ export default function ManageAbout() {
         </button>
       </div>
 
-      <div className="bg-slate-800/50 rounded-lg p-6 space-y-4">
+      {/* Content */}
+      <div
+        className="
+          rounded-2xl
+          border
+          border-yellow-500/15
+          bg-neutral-950
+          p-6
+          space-y-6
+          shadow-lg
+        "
+      >
         {/* Introduction */}
         <div>
-          <label className="block text-sm font-medium mb-2">
+          <label className="block text-sm font-medium text-yellow-300 mb-2">
             Introduction
           </label>
 
@@ -125,14 +148,14 @@ export default function ManageAbout() {
               })
             }
             className="input"
-            rows="4"
+            rows={5}
             placeholder="Your introduction"
           />
         </div>
 
         {/* Resume URL */}
         <div>
-          <label className="block text-sm font-medium mb-2">
+          <label className="block text-sm font-medium text-yellow-300 mb-2">
             Resume URL
           </label>
 
@@ -146,14 +169,14 @@ export default function ManageAbout() {
               })
             }
             className="input"
-            placeholder="e.g., /resume.pdf"
+            placeholder="e.g. /resume.pdf"
           />
         </div>
 
         {/* Education */}
-        <div className="border-t border-slate-700 pt-6">
+        <div className="border-t border-yellow-500/10 pt-6">
           <div className="flex justify-between items-center mb-4">
-            <h3 className="text-lg font-semibold">
+            <h3 className="text-lg font-semibold text-yellow-300">
               Education
             </h3>
 
@@ -165,11 +188,18 @@ export default function ManageAbout() {
             </button>
           </div>
 
-          <div className="space-y-3">
+          <div className="space-y-4">
             {eduSection?.items.map((item, i) => (
               <div
                 key={i}
-                className="bg-slate-700/30 p-4 rounded space-y-3"
+                className="
+                  rounded-xl
+                  border
+                  border-yellow-500/10
+                  bg-black
+                  p-4
+                  space-y-3
+                "
               >
                 {/* Degree */}
                 <input
@@ -186,7 +216,7 @@ export default function ManageAbout() {
                   placeholder="Degree / Certificate"
                 />
 
-                {/* College / University */}
+                {/* Institution */}
                 <input
                   type="text"
                   value={item.institution || ''}
@@ -218,7 +248,12 @@ export default function ManageAbout() {
 
                 <button
                   onClick={() => removeEducationItem(i)}
-                  className="text-rose-400 text-sm hover:text-rose-300"
+                  className="
+                    text-red-400
+                    text-sm
+                    hover:text-red-300
+                    transition
+                  "
                 >
                   Remove
                 </button>

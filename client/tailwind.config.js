@@ -4,10 +4,17 @@ export default {
   theme: {
     extend: {
       colors: {
-        brand: { 50: '#eff6ff', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8' },
+        brand: {
+          50: '#fffbea',
+          500: '#d4af37',
+          600: '#c9a227',
+          700: '#b8860b',
+        },
       },
+
       backgroundImage: {
-        'grad-hero': 'linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #ec4899 100%)',
+        'grad-hero':
+          'linear-gradient(135deg, #b8860b 0%, #d4af37 50%, #f5d76e 100%)',
       },
     },
   },

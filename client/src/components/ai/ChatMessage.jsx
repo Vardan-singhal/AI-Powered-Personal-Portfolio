@@ -15,7 +15,7 @@ export default function ChatMessage({
     return (
       <div className="flex justify-start">
         <div className="max-w-[95%] space-y-3">
-          <p className="text-sm text-slate-300">
+          <p className="text-sm text-zinc-300">
             Here are some of my projects:
           </p>
 
@@ -37,10 +37,10 @@ export default function ChatMessage({
       }`}
     >
       <div
-        className={`max-w-[85%] rounded-2xl px-4 py-2.5 text-sm ${
+        className={`max-w-[85%] rounded-2xl px-4 py-2.5 text-sm border ${
           isUser
-            ? 'bg-brand-600 text-white'
-            : 'bg-white/10 text-slate-100'
+            ? 'bg-brand-600 text-black border-brand-500'
+            : 'bg-neutral-900 text-zinc-100 border-yellow-500/10'
         }`}
       >
         <div className="prose prose-invert prose-sm max-w-none">
@@ -48,7 +48,7 @@ export default function ChatMessage({
         </div>
 
         {sources?.length > 0 && (
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-yellow-300/80 mt-2">
             Sources: {sources.join(', ')}
           </p>
         )}

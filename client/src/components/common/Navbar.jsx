@@ -22,30 +22,51 @@ export default function Navbar() {
     <motion.header
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
-      className="sticky top-0 z-50 glass border-b border-white/10"
+      className="
+        sticky
+        top-0
+        z-50
+        backdrop-blur-xl
+        bg-black/80
+        border-b
+        border-yellow-500/10
+      "
     >
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         {/* Logo */}
         <Link
           to="/"
-          className="font-bold text-lg bg-grad-hero bg-clip-text text-transparent"
+          className="
+            font-bold
+            text-lg
+            bg-grad-hero
+            bg-clip-text
+            text-transparent
+          "
         >
           AI Powered Portfolio
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex gap-1 text-sm">
+        <nav className="hidden md:flex gap-2 text-sm">
           {links.map(([to, label]) => (
             <NavLink
               key={to}
               to={to}
               end={to === '/'}
               className={({ isActive }) =>
-                `px-3 py-2 rounded-lg transition ${
+                `
+                px-4
+                py-2
+                rounded-xl
+                transition-all
+                duration-200
+                ${
                   isActive
-                    ? 'text-white bg-white/10'
-                    : 'text-slate-300 hover:text-white hover:bg-white/5'
-                }`
+                    ? 'bg-yellow-500/10 border border-yellow-500/20 text-yellow-300'
+                    : 'text-zinc-400 hover:text-yellow-300 hover:bg-yellow-500/5'
+                }
+              `
               }
             >
               {label}
@@ -56,9 +77,20 @@ export default function Navbar() {
         {/* Mobile Menu Button */}
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="md:hidden text-white p-2 rounded-lg hover:bg-white/10 transition"
+          className="
+            md:hidden
+            p-2
+            rounded-xl
+            text-yellow-300
+            hover:bg-yellow-500/10
+            transition
+          "
         >
-          {mobileOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+          {mobileOpen ? (
+            <FiX size={24} />
+          ) : (
+            <FiMenu size={24} />
+          )}
         </button>
       </div>
 
@@ -70,7 +102,14 @@ export default function Navbar() {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.25 }}
-            className="md:hidden overflow-hidden border-t border-white/10 bg-slate-950/95 backdrop-blur-xl"
+            className="
+              md:hidden
+              overflow-hidden
+              border-t
+              border-yellow-500/10
+              bg-black/95
+              backdrop-blur-xl
+            "
           >
             <div className="px-4 py-3 flex flex-col gap-2">
               {links.map(([to, label]) => (
@@ -80,11 +119,18 @@ export default function Navbar() {
                   end={to === '/'}
                   onClick={() => setMobileOpen(false)}
                   className={({ isActive }) =>
-                    `px-4 py-3 rounded-xl transition ${
+                    `
+                    px-4
+                    py-3
+                    rounded-xl
+                    transition-all
+                    duration-200
+                    ${
                       isActive
-                        ? 'bg-white/10 text-white'
-                        : 'text-slate-300 hover:bg-white/5 hover:text-white'
-                    }`
+                        ? 'bg-yellow-500/10 border border-yellow-500/20 text-yellow-300'
+                        : 'text-zinc-400 hover:bg-yellow-500/5 hover:text-yellow-300'
+                    }
+                  `
                   }
                 >
                   {label}

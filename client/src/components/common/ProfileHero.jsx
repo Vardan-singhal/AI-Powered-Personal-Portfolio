@@ -9,11 +9,11 @@ export default function ProfileHero() {
       transition={{ duration: 0.8 }}
       className="relative flex justify-center items-center py-20 md:py-8 px-6"
     >
-      {/* Main Glow */}
-      <div className="absolute w-80 h-80 md:w-[420px] md:h-[420px] rounded-full bg-cyan-500/20 blur-[100px]" />
+      {/* Gold Glow */}
+      <div className="absolute w-80 h-80 md:w-[420px] md:h-[420px] rounded-full bg-yellow-500/10 blur-[100px]" />
 
-      {/* Secondary Glow */}
-      <div className="absolute w-72 h-72 md:w-[360px] md:h-[360px] rounded-full bg-purple-500/20 blur-[90px]" />
+      {/* Secondary Gold Glow */}
+      <div className="absolute w-72 h-72 md:w-[360px] md:h-[360px] rounded-full bg-amber-500/10 blur-[90px]" />
 
       {/* Availability Badge */}
       <motion.div
@@ -30,21 +30,22 @@ export default function ProfileHero() {
           px-4
           py-2
           rounded-full
-          bg-emerald-500/15
+          bg-yellow-500/10
           border
-          border-emerald-500/30
+          border-yellow-500/25
           backdrop-blur-md
           text-xs
           font-medium
-          text-emerald-300
+          text-yellow-300
         "
       >
-        🟢 Open to Opportunities
+        ✨ Open to Opportunities
       </motion.div>
 
       {/* Profile Image */}
       <div className="relative z-10">
-        <div className="absolute inset-0 rounded-full border border-white/10 scale-110" />
+        {/* Decorative Ring */}
+        <div className="absolute inset-0 rounded-full border border-yellow-500/10 scale-110" />
 
         <motion.img
           src={profile}
@@ -65,9 +66,9 @@ export default function ProfileHero() {
             object-cover
             rounded-full
             border-4
-            border-white/10
+            border-yellow-500/15
             shadow-2xl
-            bg-slate-900
+            bg-neutral-900
           "
         />
       </div>

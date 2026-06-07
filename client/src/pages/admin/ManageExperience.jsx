@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
-import PageEditor from '../../components/admin/PageEditor';
-import { getPageContent, updatePageContent } from '../../services/pageContentService';
 import toast from 'react-hot-toast';
+import Loader from '../../components/common/Loader';
+import {
+  getPageContent,
+  updatePageContent,
+} from '../../services/pageContentService';
 
 export default function ManageExperience() {
   const [page, setPage] = useState(null);
@@ -9,17 +12,23 @@ export default function ManageExperience() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getPageContent('experience').then((p) => {
-      setPage(p);
-      setContent(JSON.parse(JSON.stringify(p.content)));
-      setLoading(false);
-    });
+    getPageContent('experience')
+      .then((p) => {
+        setPage(p);
+        setContent(JSON.parse(JSON.stringify(p.content)));
+      })
+      .finally(() => setLoading(false));
   }, []);
 
   const handleSave = async () => {
     setLoading(true);
+
     try {
-      await updatePageContent('experience', { title: page.title, content });
+      await updatePageContent('experience', {
+        title: page.title,
+        content,
+      });
+
       toast.success('Experience page updated');
     } catch (error) {
       toast.error('Failed to update');
@@ -32,7 +41,15 @@ export default function ManageExperience() {
   const addExperienceItem = () => {
     setContent({
       ...content,
-      items: [...content.items, { role: '', company: '', date: '', body: '' }],
+      items: [
+        ...content.items,
+        {
+          role: '',
+          company: '',
+          date: '',
+          body: '',
+        },
+      ],
     });
   };
 
@@ -43,71 +60,159 @@ export default function ManageExperience() {
     });
   };
 
-  const updateExperienceItem = (index, field, value) => {
+  const updateExperienceItem = (
+    index,
+    field,
+    value
+  ) => {
     setContent({
       ...content,
       items: content.items.map((item, i) =>
-        i === index ? { ...item, [field]: value } : item
+        i === index
+          ? {
+              ...item,
+              [field]: value,
+            }
+          : item
       ),
     });
   };
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) {
+    return <Loader text="Loading Experience Page..." />;
+  }
+
   if (!content) return null;
 
   return (
-    <div className="space-y-6">
-      <div className="flex justify-between items-center">
-        <h2 className="text-2xl font-bold">Edit Experience</h2>
-        <button onClick={handleSave} disabled={loading} className="btn-primary">
+    <div className="space-y-8">
+      {/* Header */}
+      <div className="flex flex-col md:flex-row md:justify-between md:items-center gap-4">
+        <h2 className="text-3xl font-bold text-yellow-300">
+          Edit Experience Page
+        </h2>
+
+        <button
+          onClick={handleSave}
+          disabled={loading}
+          className="btn-primary"
+        >
           {loading ? 'Saving...' : 'Save Changes'}
         </button>
       </div>
 
-      <div className="bg-slate-800/50 rounded-lg p-6 space-y-4">
-        <div className="flex justify-between items-center mb-4">
-          <h3 className="text-lg font-semibold">Work Experience</h3>
-          <button onClick={addExperienceItem} className="btn-ghost text-sm">
+      {/* Content */}
+      <div
+        className="
+          rounded-2xl
+          border
+          border-yellow-500/15
+          bg-neutral-950
+          p-6
+          space-y-6
+          shadow-lg
+        "
+      >
+        {/* Experience Header */}
+        <div className="flex justify-between items-center">
+          <h3 className="text-lg font-semibold text-yellow-300">
+            Work Experience
+          </h3>
+
+          <button
+            onClick={addExperienceItem}
+            className="btn-ghost text-sm"
+          >
             + Add Experience
           </button>
         </div>
 
+        {/* Experience Items */}
         <div className="space-y-4">
           {content.items.map((item, i) => (
-            <div key={i} className="bg-slate-700/30 p-4 rounded space-y-2">
+            <div
+              key={i}
+              className="
+                rounded-xl
+                border
+                border-yellow-500/10
+                bg-black
+                p-4
+                space-y-3
+              "
+            >
+              {/* Role */}
               <input
                 type="text"
                 value={item.role}
-                onChange={(e) => updateExperienceItem(i, 'role', e.target.value)}
+                onChange={(e) =>
+                  updateExperienceItem(
+                    i,
+                    'role',
+                    e.target.value
+                  )
+                }
                 className="input"
-                placeholder="Job role"
+                placeholder="Job Role"
               />
+
+              {/* Company */}
               <input
                 type="text"
                 value={item.company}
-                onChange={(e) => updateExperienceItem(i, 'company', e.target.value)}
+                onChange={(e) =>
+                  updateExperienceItem(
+                    i,
+                    'company',
+                    e.target.value
+                  )
+                }
                 className="input"
-                placeholder="Company name"
+                placeholder="Company Name"
               />
+
+              {/* Date */}
               <input
                 type="text"
                 value={item.date}
-                onChange={(e) => updateExperienceItem(i, 'date', e.target.value)}
+                onChange={(e) =>
+                  updateExperienceItem(
+                    i,
+                    'date',
+                    e.target.value
+                  )
+                }
                 className="input"
-                placeholder="Date/Period"
+                placeholder="Jan 2024 — Present"
               />
+
+              {/* Description */}
               <textarea
                 value={item.body}
-                onChange={(e) => updateExperienceItem(i, 'body', e.target.value)}
+                onChange={(e) =>
+                  updateExperienceItem(
+                    i,
+                    'body',
+                    e.target.value
+                  )
+                }
                 className="input"
-                rows="3"
-                placeholder="Job description"
+                rows={4}
+                placeholder="Describe responsibilities, achievements, technologies used..."
               />
+
               <button
-                onClick={() => removeExperienceItem(i)}
-                className="text-rose-400 text-sm hover:text-rose-300"
+                onClick={() =>
+                  removeExperienceItem(i)
+                }
+                className="
+                  text-red-400
+                  text-sm
+                  hover:text-red-300
+                  transition
+                "
               >
-                Remove
+                Remove Experience
               </button>
             </div>
           ))}

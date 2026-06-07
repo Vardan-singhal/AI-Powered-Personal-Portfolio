@@ -59,7 +59,7 @@ export default function Home() {
       {/* Hero Section */}
       <section className="relative overflow-hidden">
         {/* Background Glow */}
-        <div className="absolute inset-0 bg-grad-hero opacity-20 blur-3xl" />
+        <div className="absolute inset-0 bg-grad-hero opacity-10 blur-3xl" />
 
         <div className="relative max-w-7xl mx-auto px-6 py-24">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -71,7 +71,16 @@ export default function Home() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="pb-3 text-5xl md:text-7xl font-bold leading-tight bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent"
+                className="
+                  pb-3
+                  text-5xl
+                  md:text-7xl
+                  font-bold
+                  leading-tight
+                  bg-grad-hero
+                  bg-clip-text
+                  text-transparent
+                "
               >
                 {hero.title}
               </motion.h1>
@@ -97,7 +106,7 @@ export default function Home() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.5 }}
-                className="mt-6 text-lg text-slate-300 max-w-2xl mx-auto lg:mx-0"
+                className="mt-6 text-lg text-zinc-300 max-w-2xl mx-auto lg:mx-0"
               >
                 {hero.subtitle}
               </motion.p>
@@ -175,11 +184,11 @@ function Feature({ icon, title, body }) {
         {icon}
       </div>
 
-      <h3 className="font-semibold mt-4">
+      <h3 className="font-semibold mt-4 text-white">
         {title}
       </h3>
 
-      <p className="text-sm text-slate-400 mt-2">
+      <p className="text-sm text-zinc-400 mt-2">
         {body}
       </p>
     </div>

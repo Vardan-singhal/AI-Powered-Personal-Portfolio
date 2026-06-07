@@ -4,12 +4,37 @@ const Q = [
   'What is your strongest skill?',
   'Tell me about your most impressive project.',
 ];
+
 export default function SuggestedQuestions({ onPick }) {
   return (
-    <div className="space-y-2">
-      <p className="text-xs text-slate-400">Try asking:</p>
+    <div className="space-y-3">
+      <p className="text-xs uppercase tracking-wider text-yellow-400/80">
+        Try asking:
+      </p>
+
       {Q.map((q) => (
-        <button key={q} onClick={() => onPick(q)} className="w-full text-left text-sm p-3 rounded-lg bg-white/5 hover:bg-white/10 transition">{q}</button>
+        <button
+          key={q}
+          onClick={() => onPick(q)}
+          className="
+            w-full
+            text-left
+            text-sm
+            p-3
+            rounded-xl
+            bg-neutral-900
+            border
+            border-yellow-500/10
+            text-zinc-200
+            hover:border-yellow-500/30
+            hover:bg-neutral-800
+            hover:text-yellow-300
+            transition-all
+            duration-200
+          "
+        >
+          {q}
+        </button>
       ))}
     </div>
   );
