@@ -38,27 +38,19 @@ export default function Navbar() {
           to="/"
           className="flex items-center gap-3"
         >
-          <div
+          <img
+            src="/logo.png"
+            alt="Vardan Singhal Logo"
             className="
-              w-10
-              h-10
-              rounded-xl
-              bg-yellow-400
-              text-black
-              font-black
-              text-sm
-              flex
-              items-center
-              justify-center
-              shadow-lg
-              shadow-yellow-500/20
+              w-11
+              h-11
+              object-contain
+              drop-shadow-lg
             "
-          >
-            VS
-          </div>
+          />
 
           <div className="leading-tight">
-            <p className="font-bold text-yellow-300">
+            <p className="font-bold text-yellow-300 text-sm md:text-base">
               Vardan Singhal
             </p>
 
