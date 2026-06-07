@@ -54,9 +54,7 @@ export default function Navbar() {
               Vardan Singhal
             </p>
 
-            <p className="text-xs text-zinc-500">
-              AI Developer Hub
-            </p>
+            
           </div>
         </Link>
 
