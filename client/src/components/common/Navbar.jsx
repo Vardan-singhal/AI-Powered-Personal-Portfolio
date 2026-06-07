@@ -36,15 +36,36 @@ export default function Navbar() {
         {/* Logo */}
         <Link
           to="/"
-          className="
-            font-bold
-            text-lg
-            bg-grad-hero
-            bg-clip-text
-            text-transparent
-          "
+          className="flex items-center gap-3"
         >
-          AI Powered Portfolio
+          <div
+            className="
+              w-10
+              h-10
+              rounded-xl
+              bg-yellow-400
+              text-black
+              font-black
+              text-sm
+              flex
+              items-center
+              justify-center
+              shadow-lg
+              shadow-yellow-500/20
+            "
+          >
+            VS
+          </div>
+
+          <div className="leading-tight">
+            <p className="font-bold text-yellow-300">
+              Vardan Singhal
+            </p>
+
+            <p className="text-xs text-zinc-500">
+              AI Developer Hub
+            </p>
+          </div>
         </Link>
 
         {/* Desktop Navigation */}
