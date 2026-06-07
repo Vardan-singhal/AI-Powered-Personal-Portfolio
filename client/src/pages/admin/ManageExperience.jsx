@@ -197,9 +197,19 @@ export default function ManageExperience() {
                   )
                 }
                 className="input"
-                rows={4}
-                placeholder="Describe responsibilities, achievements, technologies used..."
+                rows={6}
+                placeholder={`Enter one achievement per line
+
+Built AI-powered portfolio platform
+Implemented JWT authentication
+Integrated MongoDB database
+Developed REST APIs using Express.js
+Improved application performance`}
               />
+
+              <p className="text-xs text-zinc-500">
+                Each new line will be displayed as a bullet point on the Experience page.
+              </p>
 
               <button
                 onClick={() =>
