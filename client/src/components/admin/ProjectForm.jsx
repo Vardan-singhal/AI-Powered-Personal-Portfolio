@@ -89,7 +89,7 @@ export default function ProjectForm({ onSubmit, defaultValues }) {
         {...register('liveUrl')}
       />
 
-      {/*
+      
       <input
         type="file"
         multiple
@@ -97,14 +97,11 @@ export default function ProjectForm({ onSubmit, defaultValues }) {
         {...register('images')}
         className="text-sm text-zinc-300"
       />
-      */}
-
-      {/*
       <label className="flex items-center gap-2 text-sm text-zinc-300">
         <input type="checkbox" {...register('featured')} />
         Featured Project
       </label>
-      */}
+     
 
       <button
         type="submit"
