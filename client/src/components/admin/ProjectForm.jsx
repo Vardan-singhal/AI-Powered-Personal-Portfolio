@@ -1,9 +1,28 @@
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
-export default function ProjectForm({ onSubmit, defaultValues }) {
-  const { register, handleSubmit } = useForm({
+export default function ProjectForm({
+  onSubmit,
+  defaultValues,
+  isEditing = false,
+}) {
+  const { register, handleSubmit, reset } = useForm({
     defaultValues,
   });
+
+  useEffect(() => {
+    reset(
+      defaultValues || {
+        title: '',
+        description: '',
+        longDescription: '',
+        technologies: '',
+        githubUrl: '',
+        liveUrl: '',
+        featured: false,
+      }
+    );
+  }, [defaultValues, reset]);
 
   const submit = (data) => {
     const fd = new FormData();
@@ -54,14 +73,18 @@ export default function ProjectForm({ onSubmit, defaultValues }) {
       <input
         className={inputClasses}
         placeholder="Project Title"
-        {...register('title', { required: true })}
+        {...register('title', {
+          required: true,
+        })}
       />
 
       <textarea
         rows={4}
         className={inputClasses}
         placeholder="Short Description"
-        {...register('description', { required: true })}
+        {...register('description', {
+          required: true,
+        })}
       />
 
       <textarea
@@ -89,7 +112,38 @@ export default function ProjectForm({ onSubmit, defaultValues }) {
         {...register('liveUrl')}
       />
 
-      
+      {/* Existing Images */}
+      {isEditing &&
+        defaultValues?.images?.length > 0 && (
+          <div>
+            <p className="text-sm text-zinc-400 mb-2">
+              Existing Images
+            </p>
+
+            <div className="flex flex-wrap gap-3">
+              {defaultValues.images.map(
+                (img, index) => (
+                  <img
+                    key={index}
+                    src={img.url}
+                    alt={`Project ${
+                      index + 1
+                    }`}
+                    className="
+                      w-24
+                      h-24
+                      object-cover
+                      rounded-lg
+                      border
+                      border-yellow-500/20
+                    "
+                  />
+                )
+              )}
+            </div>
+          </div>
+        )}
+
       <input
         type="file"
         multiple
@@ -97,11 +151,14 @@ export default function ProjectForm({ onSubmit, defaultValues }) {
         {...register('images')}
         className="text-sm text-zinc-300"
       />
+
       <label className="flex items-center gap-2 text-sm text-zinc-300">
-        <input type="checkbox" {...register('featured')} />
+        <input
+          type="checkbox"
+          {...register('featured')}
+        />
         Featured Project
       </label>
-     
 
       <button
         type="submit"
@@ -117,8 +174,11 @@ export default function ProjectForm({ onSubmit, defaultValues }) {
           hover:shadow-lg
         "
       >
-        Save Project
+        {isEditing
+          ? 'Update Project'
+          : 'Save Project'}
       </button>
     </form>
   );
 }
+

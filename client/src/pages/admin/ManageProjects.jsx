@@ -7,12 +7,15 @@ import ProjectForm from '../../components/admin/ProjectForm';
 import {
   listProjects,
   createProject,
+  updateProject,
   deleteProject,
 } from '../../services/projectService';
 
 export default function ManageProjects() {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selectedProject, setSelectedProject] =
+    useState(null);
 
   const load = async () => {
     try {
@@ -47,11 +50,40 @@ export default function ManageProjects() {
     }
   };
 
+  const update = async (fd) => {
+    try {
+      await updateProject(
+        selectedProject._id,
+        fd
+      );
+
+      toast.success('Project updated');
+
+      setSelectedProject(null);
+
+      load();
+    } catch (err) {
+      console.error(err);
+
+      toast.error(
+        err?.response?.data?.message ||
+          'Update failed'
+      );
+    }
+  };
+
   const del = async (id) => {
     try {
       await deleteProject(id);
 
       toast.success('Project deleted');
+
+      if (
+        selectedProject &&
+        selectedProject._id === id
+      ) {
+        setSelectedProject(null);
+      }
 
       load();
     } catch (error) {
@@ -74,8 +106,39 @@ export default function ManageProjects() {
 
       {/* Content */}
       <div className="grid md:grid-cols-2 gap-6">
-        {/* Create Project */}
-        <ProjectForm onSubmit={create} />
+        {/* Left Side */}
+        <div className="space-y-4">
+          <ProjectForm
+            defaultValues={selectedProject}
+            isEditing={!!selectedProject}
+            onSubmit={(fd) =>
+              selectedProject
+                ? update(fd)
+                : create(fd)
+            }
+          />
+
+          {selectedProject && (
+            <button
+              onClick={() =>
+                setSelectedProject(null)
+              }
+              className="
+                w-full
+                px-4
+                py-3
+                rounded-xl
+                border
+                border-yellow-500/20
+                text-yellow-300
+                hover:bg-yellow-500/10
+                transition
+              "
+            >
+              Cancel Editing
+            </button>
+          )}
+        </div>
 
         {/* Existing Projects */}
         <div
@@ -125,20 +188,41 @@ export default function ManageProjects() {
                     </p>
                   </div>
 
-                  <button
-                    onClick={() =>
-                      del(project._id)
-                    }
-                    className="
-                      text-red-400
-                      text-sm
-                      hover:text-red-300
-                      transition
-                      flex-shrink-0
-                    "
-                  >
-                    Delete
-                  </button>
+                  <div className="flex items-center gap-3">
+                    <button
+                      onClick={() =>
+                        setSelectedProject({
+                          ...project,
+                          technologies:
+                            project.technologies?.join(
+                              ', '
+                            ) || '',
+                        })
+                      }
+                      className="
+                        text-yellow-300
+                        text-sm
+                        hover:text-yellow-200
+                        transition
+                      "
+                    >
+                      Edit
+                    </button>
+
+                    <button
+                      onClick={() =>
+                        del(project._id)
+                      }
+                      className="
+                        text-red-400
+                        text-sm
+                        hover:text-red-300
+                        transition
+                      "
+                    >
+                      Delete
+                    </button>
+                  </div>
                 </div>
               ))
             )}
