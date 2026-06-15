@@ -79,6 +79,62 @@ export default function AIProjectExplainer({ projectId }) {
 }
 
 function Section({ title, body }) {
+  const renderContent = () => {
+    // Arrays
+    if (Array.isArray(body)) {
+      return body.map((item, index) => (
+        <div key={index} className="mb-2">
+          • {typeof item === 'object'
+            ? JSON.stringify(item, null, 2)
+            : item}
+        </div>
+      ));
+    }
+
+    // Objects like { nonTechnical, technical }
+    if (typeof body === 'object' && body !== null) {
+      return (
+        <div className="space-y-4">
+          {body.nonTechnical && (
+            <div>
+              <h5 className="font-medium text-yellow-200 mb-1">
+                Non-Technical
+              </h5>
+              <p>{body.nonTechnical}</p>
+            </div>
+          )}
+
+          {body.technical && (
+            <div>
+              <h5 className="font-medium text-yellow-200 mb-1">
+                Technical
+              </h5>
+              <p>{body.technical}</p>
+            </div>
+          )}
+
+          {!body.nonTechnical &&
+            !body.technical &&
+            Object.entries(body).map(([key, value]) => (
+              <div key={key}>
+                <h5 className="font-medium text-yellow-200 mb-1 capitalize">
+                  {key}
+                </h5>
+                <p>
+                  {typeof value === 'object'
+                    ? JSON.stringify(value, null, 2)
+                    : String(value)}
+                </p>
+              </div>
+            ))}
+        </div>
+      );
+    }
+
+    // Strings, numbers, null, undefined
+    return body ?? 'No data available';
+  };
+
   return (
     <div
       className="
@@ -94,16 +150,7 @@ function Section({ title, body }) {
       </h4>
 
       <div className="text-zinc-300 text-sm leading-relaxed whitespace-pre-wrap">
-        {Array.isArray(body)
-          ? body.map((item, index) => (
-              <div
-                key={index}
-                className="mb-2"
-              >
-                • {item}
-              </div>
-            ))
-          : body}
+        {renderContent()}
       </div>
     </div>
   );
