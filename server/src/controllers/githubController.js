@@ -15,13 +15,24 @@ async function gh(path) {
   };
 
   if (process.env.GITHUB_TOKEN) {
-    headers.Authorization = `Bearer ${process.env.GITHUB_TOKEN}`;
+    headers.Authorization = `Bearer ${process.env.GITHUB_TOKEN.trim()}`;
   }
 
-  const r = await fetch(
+  let r = await fetch(
     `https://api.github.com${path.replace(':user', username)}`,
     { headers }
   );
+
+  if (r.status === 401 && headers.Authorization) {
+    console.warn(
+      'GITHUB_TOKEN returned 401 Bad credentials. Retrying public endpoint without token...'
+    );
+    delete headers.Authorization;
+    r = await fetch(
+      `https://api.github.com${path.replace(':user', username)}`,
+      { headers }
+    );
+  }
 
   if (!r.ok) {
     let message = `GitHub ${r.status}`;

@@ -2,63 +2,139 @@
 <html lang="en" class="dark">
   <head>
     <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Favicon -->
-    <link
-      rel="icon"
-      type="image/png"
-      href="/logo.png"
-    />
+    <!-- Browser Tab & Search Title -->
+    <title>Vardan Singhal | Web Developer &amp; Full-Stack Developer</title>
 
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0"
-    />
-
-    <!-- SEO -->
+    <!-- Meta Description (Optimized for Vardan Singhal personal brand) -->
     <meta
       name="description"
-      content="Vardan Singhal — Full Stack Developer specializing in MERN Stack, AI-powered applications, modern web experiences, and scalable backend systems."
+      content="Official personal portfolio of Vardan Singhal, Web Developer and Full-Stack Developer specializing in React, Node.js, MERN stack, and AI-powered applications."
     />
 
     <meta
       name="keywords"
-      content="Vardan Singhal, Full Stack Developer, MERN Stack Developer, React Developer, Node.js Developer, AI Developer, Portfolio, MongoDB, Express.js, JavaScript"
+      content="Vardan Singhal, Vardan Singhal web developer, Vardan Singhal developer, Vardan Singhal portfolio, Vardan Singhal full stack developer, Vardan Singhal frontend developer, Vardan Singhal React developer, MERN Stack, React, Node.js"
     />
 
-    <meta
-      name="author"
-      content="Vardan Singhal"
+    <meta name="author" content="Vardan Singhal" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="theme-color" content="#0a0a0a" />
+
+    <!-- Canonical URL (Replace with your verified custom domain if different) -->
+    <link rel="canonical" href="https://vardansinghal.com/" />
+
+    <!-- Favicon & Touch Icons -->
+    <link rel="icon" type="image/png" sizes="48x48" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
+
+    <!-- Hero Image Preload for Instant LCP -->
+    <link
+      rel="preload"
+      as="image"
+      type="image/webp"
+      href="/profile.webp"
+      fetchpriority="high"
     />
 
-    <!-- Open Graph -->
-    <meta
-      property="og:title"
-      content="Vardan Singhal "
-    />
-
+    <!-- Open Graph / Facebook / LinkedIn -->
+    <meta property="og:site_name" content="Vardan Singhal Portfolio" />
+    <meta property="og:type" content="profile" />
+    <meta property="og:title" content="Vardan Singhal | Web Developer &amp; Full-Stack Developer" />
     <meta
       property="og:description"
-      content="Recruiter-focused AI-powered portfolio showcasing projects, skills, experience, GitHub analytics, resume reviewer, and AI tools."
+      content="Official personal portfolio of Vardan Singhal, Full-Stack Web Developer. Explore projects, technical skills, experience, and interactive AI tools."
     />
+    <meta property="og:url" content="https://vardansinghal.com/" />
+    <meta property="og:image" content="https://vardansinghal.com/og-image.png" />
+    <meta property="og:image:secure_url" content="https://vardansinghal.com/og-image.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Vardan Singhal — Web Developer &amp; Full-Stack Developer" />
+    <meta property="profile:first_name" content="Vardan" />
+    <meta property="profile:last_name" content="Singhal" />
 
+    <!-- Twitter / X Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Vardan Singhal | Web Developer &amp; Full-Stack Developer" />
     <meta
-      property="og:type"
-      content="website"
+      name="twitter:description"
+      content="Official personal portfolio of Vardan Singhal, Full-Stack Web Developer specializing in React, Node.js, and AI-powered applications."
     />
+    <meta name="twitter:image" content="https://vardansinghal.com/og-image.png" />
+    <meta name="twitter:image:alt" content="Vardan Singhal — Web Developer &amp; Full-Stack Developer" />
 
-    <!-- Browser Tab Title -->
-    <title>
-      Vardan Singhal
-    </title>
+    <!-- Structured Data (JSON-LD) - Person & WebSite Entity Graph for Google Knowledge Graph -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Person",
+          "@id": "https://vardansinghal.com/#person",
+          "name": "Vardan Singhal",
+          "givenName": "Vardan",
+          "familyName": "Singhal",
+          "gender": "https://schema.org/Male",
+          "jobTitle": "Full-Stack Web Developer",
+          "description": "Full-Stack Web Developer specializing in React, Node.js, Express, MongoDB, modern web architecture, and AI-powered applications.",
+          "url": "https://vardansinghal.com",
+          "image": "https://vardansinghal.com/profile.webp",
+          "sameAs": [
+            "https://github.com/Vardan-singhal",
+            "https://www.linkedin.com/in/vardan-singhal-612476214/"
+          ],
+          "knowsAbout": [
+            "JavaScript",
+            "React.js",
+            "Node.js",
+            "Express.js",
+            "MongoDB",
+            "Full Stack Development",
+            "Frontend Development",
+            "Backend Development",
+            "Artificial Intelligence",
+            "REST APIs",
+            "Tailwind CSS"
+          ]
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://vardansinghal.com/#website",
+          "url": "https://vardansinghal.com",
+          "name": "Vardan Singhal | Portfolio",
+          "description": "Official personal portfolio website of Vardan Singhal, Web Developer and Full-Stack Developer.",
+          "publisher": {
+            "@id": "https://vardansinghal.com/#person"
+          },
+          "inLanguage": "en"
+        },
+        {
+          "@type": "ProfilePage",
+          "@id": "https://vardansinghal.com/#webpage",
+          "url": "https://vardansinghal.com",
+          "name": "Vardan Singhal | Web Developer & Full-Stack Developer",
+          "isPartOf": {
+            "@id": "https://vardansinghal.com/#website"
+          },
+          "about": {
+            "@id": "https://vardansinghal.com/#person"
+          },
+          "mainEntity": {
+            "@id": "https://vardansinghal.com/#person"
+          },
+          "inLanguage": "en"
+        }
+      ]
+    }
+    </script>
   </head>
 
-  <body class="bg-black text-zinc-100">
+  <body class="bg-black text-zinc-100 antialiased selection:bg-yellow-500/30 selection:text-yellow-200">
     <div id="root"></div>
 
-    <script
-      type="module"
-      src="/src/main.jsx"
-    ></script>
+    <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
